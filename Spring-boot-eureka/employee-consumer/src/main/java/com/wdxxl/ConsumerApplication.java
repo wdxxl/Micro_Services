@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wdxxl.controller.ConsumerControllerClient;
 import com.wdxxl.controller.ConsumerControllerRibbonClient;
+import com.wdxxl.controller.ConsumerControllerZuulClient;
 
 @SpringBootApplication
 @RestController
@@ -22,6 +23,9 @@ public class ConsumerApplication {
 	@Autowired
 	private ConsumerControllerRibbonClient ribbonClient;
 
+	@Autowired
+	private ConsumerControllerZuulClient zuulClient;
+
 	@RequestMapping("/employee")
 	public String getEmployee(@RequestParam(value = "name", defaultValue = "wdxxl") String name) {
 		String result = client.getEmployee();
@@ -31,6 +35,12 @@ public class ConsumerApplication {
 	@RequestMapping("/employee_ribbon")
 	public String getEmployeeRibbon(@RequestParam(value = "name", defaultValue = "wdxxl") String name) {
 		String result = ribbonClient.getEmployee();
+		return String.format("%s, %s!", result, name);
+	}
+
+	@RequestMapping("/employee_zuul")
+	public String getEmployeeZuul(@RequestParam(value = "name", defaultValue = "wdxxl") String name) {
+		String result = zuulClient.getEmployee();
 		return String.format("%s, %s!", result, name);
 	}
 
