@@ -1,4 +1,4 @@
-package com.wdxxl.controller;
+package com.wdxxl.domain;
 
 import java.io.Serializable;
 

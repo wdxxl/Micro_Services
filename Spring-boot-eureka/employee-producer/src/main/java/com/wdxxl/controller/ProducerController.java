@@ -40,7 +40,17 @@ public class ProducerController {
 		return getGreetings() + emp.toString();
 	}
 
-	public String getGreetings() {
+	@RequestMapping(value = "/employee_obj", method = RequestMethod.GET)
+	public Employee empPage() {
+		Employee emp = new Employee();
+		emp.setName("emp1");
+		emp.setDesignation("manager");
+		emp.setEmpId("1");
+		emp.setSalary(3000);
+		return emp;
+	}
+
+	private String getGreetings() {
 		List<String> greetings = Arrays.asList("Employee1", "Employee2", "Employee3");
 		Random rand = new Random();
 		int randomNum = rand.nextInt(greetings.size());
